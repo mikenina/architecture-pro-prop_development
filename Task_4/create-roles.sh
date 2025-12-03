@@ -72,7 +72,7 @@ rules:
   resources: ["deployments", "statefulsets"]
   verbs: ["get", "list", "watch"]
 EOF
-echo "✓ Роль metrics-reader создана в MONITORING_NAMESPACE"
+echo "✓ Роль metrics-reader создана в $MONITORING_NAMESPACE"
 
 echo ""
 echo "Список созданных ролей:"
