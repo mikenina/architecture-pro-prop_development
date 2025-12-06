@@ -109,3 +109,25 @@ cd Task_4/
 cd Task_4/
 ./cleanup-all.sh
 ```
+
+## Задание 5. Управление трафиком внутри кластера Kubertnetes
+
+```bash
+kubectl create namespace task-5
+
+kubectl run front-end-app --image=nginx --labels role=front-end --expose --port=80 -n task-5
+
+kubectl run back-end-api-app --image=nginx --labels role=back-end-api --expose --port=80 -n task-5
+
+kubectl run admin-front-end-app --image=nginx --labels role=admin-front-end --expose --port=80 -n task-5
+
+kubectl run admin-back-end-api-app --image=nginx --labels role=admin-back-end-api --expose --port=80 -n task-5
+
+kubectl apply -f ./Task_5/non-admin-api-allow.yaml
+kubectl apply -f ./Task_5/admin-api-allow.yaml
+
+kubectl get endpoints -n task-5
+
+kubectl run test1 --rm -i -t --image=alpine -n task-5 --labels="role=front-end" --restart=Never -- sh -c "wget -qO- --timeout=2 http://back-end-api-app"
+kubectl run test2 --rm -i -t --image=alpine -n task-5 --labels="role=admin-front-end" --restart=Never -- sh -c "wget -qO- --timeout=2 http://admin-back-end-api-app"
+```
