@@ -1,0 +1,10 @@
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: K8sRequireNonRoot
+metadata:
+  name: require-nonroot
+spec:
+  match:
+    namespaces:
+      - gatekeeper-zone
+  parameters:
+    message: "All containers must run as non-root users in gatekeeper-zone namespace"

@@ -76,6 +76,8 @@
 
 ## Задание 4. Защита доступа к кластеру Kubernetes
 
+Необходимо организовать ролевой доступ к Kubernetes для пользователей кластера.
+
 [RBAC](Task_4/RBAC.md)
 
 ```bash
@@ -112,6 +114,10 @@ cd Task_4/
 
 ## Задание 5. Управление трафиком внутри кластера Kubertnetes
 
+Нужно разграничить трафик между сервисами, которые развёрнуты в кластере Kubernetes:
+Вам необходимо добавить новый сервис. В терминах Kubernetes это под (pod). При этом нужно запретить другим подам с ним взаимодействовать.
+Необходимо изолировать трафик к новому сервису от других подов.
+
 ```bash
 kubectl create namespace task-5
 
@@ -131,3 +137,11 @@ kubectl get endpoints -n task-5
 kubectl run test1 --rm -i -t --image=alpine -n task-5 --labels="role=front-end" --restart=Never -- sh -c "wget -qO- --timeout=2 http://back-end-api-app"
 kubectl run test2 --rm -i -t --image=alpine -n task-5 --labels="role=admin-front-end" --restart=Never -- sh -c "wget -qO- --timeout=2 http://admin-back-end-api-app"
 ```
+
+## Задание 6. Аудит активности пользователей и обнаружение инцидентов
+
+[Отчёт по результатам анализа Kubernetes Audit Log](./Task_6/analysis.md)
+
+## Задание 7. Аудит и обеспечение соответствия политике безопасности контейнеров (PSP / PodSecurity / OPA Gatekee)
+
+[README.md](Task_7/README.md)

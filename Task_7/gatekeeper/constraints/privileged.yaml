@@ -1,0 +1,10 @@
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: K8sBlockPrivileged
+metadata:
+  name: block-privileged
+spec:
+  match:
+    namespaces:
+      - gatekeeper-zone
+  parameters:
+    message: "Privileged containers are prohibited in gatekeeper-zone namespace"

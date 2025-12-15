@@ -1,0 +1,10 @@
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: K8sRequireReadOnlyRootFS
+metadata:
+  name: require-readonlyrootfs
+spec:
+  match:
+    namespaces:
+      - gatekeeper-zone
+  parameters:
+    message: "Containers must have readOnlyRootFilesystem: true in gatekeeper-zone namespace"
