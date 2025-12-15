@@ -1,0 +1,10 @@
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: K8sBlockHostPath
+metadata:
+  name: block-hostpath
+spec:
+  match:
+    namespaces:
+      - gatekeeper-zone
+  parameters:
+    message: "hostPath volumes are prohibited in gatekeeper-zone namespace"
